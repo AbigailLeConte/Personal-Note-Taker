@@ -54,7 +54,25 @@ app.post('/api/notes', (req, res) => {
   } else {
     res.status(500).json('Error in posting notes');
   }
+;
+
+// GET Route for feedback page - check this link
+app.get('/feedback', (req, res) =>
+  res.sendFile(path.join(__dirname, './public/assets/js/404.js'))
+
+// Wildcard route to direct users to a 404 page - check this link
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/assets/js/404.html'))
 );
+
+// GET Route
+app.get('/', (req, res) => {
+  res.send(
+    'Use the API endpoint at <a href="http://localhost:3001/api">/api/diagnostics</a>'
+  );
+});
+
+app.get('/db/diagnostics/json', (req, res) => res.json(pulls));
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)

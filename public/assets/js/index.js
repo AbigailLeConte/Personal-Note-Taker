@@ -171,7 +171,8 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = (./db.json) => getNotes().then(renderNoteList);
+const getAndRenderNotes = ('./db.json') 
+ getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
@@ -183,3 +184,20 @@ if (window.location.pathname === '/notes') {
 getAndRenderNotes(newNote)
 .then((data) =>alert(`Note added! Review ID: ${data.body.note_id}`))
 .catch((err) => console.error(err));
+
+// featch request that will send a POST request to `/api/diagnostics` every time a user attempts to submit an invalid form.
+fetch('/api/reviews', {
+  method: 'POST',
+  headers: {
+    'Content-Type': '/api/diagnostics',
+  },
+  body: JSON.stringify(review),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('Successful POST request:', data);
+    return data;
+  })
+  .catch((error) => {
+    console.error('Error in POST request:', error);
+  });
